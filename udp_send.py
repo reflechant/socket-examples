@@ -3,6 +3,7 @@ This program sends one UDP packet over local network
 """
 import socket
 import ipaddress
+# you may use 192.168.1.255 or other broadcast IP but it requires root privileges under Linux
 peer_addr = '192.168.1.10'
 port = 22000
 
