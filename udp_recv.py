@@ -2,13 +2,17 @@
 This program receives UDP packets
 """
 import socket
-import ipaddress
 port = 22000
 
-my_addr = socket.gethostbyname(socket.gethostname())
+
+def get_host():
+    with socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM) as s:
+        s.connect(('10.255.255.255', 80))
+        return s.getsockname()[0]
+
 
 with socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM) as sock:
-    sock.bind((my_addr, port))
+    sock.bind((get_host(), port))
     while True:
         data, sender_addr = sock.recvfrom(4096)
         print(sender_addr, data.decode())
