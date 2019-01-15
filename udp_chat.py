@@ -22,8 +22,7 @@ def send(sock):
 def recv(sock):
     while True:
         data, sender_addr = sock.recvfrom(4096)
-        sys.stdout.write("\n", sender_addr[0]+":", data.decode())
-        sys.stdout.flush()
+        print(sender_addr[0]+":", data.decode())
 
 sock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 sock.bind((get_host(), port))
